@@ -1,7 +1,0 @@
-fix:
-  - custom hooks
-  - reducers
-
-features:
-  - implementare l'aggiunta di nuovi todo
-  - pagina per route del todo 
