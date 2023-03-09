@@ -1,21 +1,13 @@
-import { Note } from "@/components"
-import { useFetchTodos } from "@/hooks"
-import type { Todo } from '@/types'
-import { useRouter } from "next/router"
-import { useState } from "react"
+import Layout from "@/components/layout";
+import { useRouter } from "next/router";
 
-const Todo = () => {
+export default function Todo() {
   const router = useRouter()
   const { id } = router.query
-  const [todos, setTodos] = useState<Todo[]>([])
-
-  useFetchTodos(setTodos)
-
-  const note = todos.find((t) => t.id === Number({id}))?? todos[0]
 
   return (
-    <Note {...note} />
+    <Layout>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    </Layout>
   )
 }
-
-export default Todo
