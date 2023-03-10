@@ -16,8 +16,6 @@
 /build
 
 # misc
-test_frontend-2021-11
-notes.txt
 .DS_Store
 *.pem
 

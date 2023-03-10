@@ -1,20 +1,18 @@
-import { useRef, useState } from "react"
-import { Todo } from "@/types"
-import Layout from "@/components/layout"
-import SearchBar from "@/components/search-bar"
-import Note from "@/components/note"
-import useFetchNotes from "@/hooks/useFetchNotes"
-import useFilterNotes from "@/hooks/useFilterNotes"
 import Header from "@/components/header"
+import Note from "@/components/note"
+import SearchBar from "@/components/search-bar"
+import { Todo } from "@/types"
+import { useState } from "react"
 
-export default function App() {
-  const [todos, setTodos] = useState<Todo[]>([])
-  const [results, setResults] = useState<Todo[]>([])
+type homePageProps = {
+  todos: Todo[]
+  setTodos: (value: Todo[]) => void
+}
 
-  useFetchNotes(setTodos, setResults)
-
+export default function HomePage({ todos, setTodos }: homePageProps) {
+  const [results, setResults] = useState<Todo[]>(todos)
   return (
-    <Layout>
+    <>
       <Header />
       <SearchBar todos={todos} setResults={setResults} />
       {
@@ -24,12 +22,12 @@ export default function App() {
             <Note 
               key={r.id} 
               item={r} 
-              todos={todos}
-              setTodos={setTodos}
+              todos={todos} 
+              setTodos={setTodos} 
             />
           )
         })
       }
-    </Layout>
+    </>
   )
 }

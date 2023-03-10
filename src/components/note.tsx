@@ -1,7 +1,7 @@
 import { css } from "@emotion/react"
 import { Todo } from "@/types"
 import { useRouter } from 'next/router'
-import { MouseEvent, Dispatch, SetStateAction } from "react"
+import { MouseEvent } from "react"
 
 const noteCss = {
   note: css({
@@ -43,7 +43,7 @@ const noteCss = {
 type noteProps = {
   item: Todo
   todos: Todo[]
-  setTodos: Dispatch<SetStateAction<Todo[]>>
+  setTodos: (value: Todo[]) => void
 }
 
 export default function Note({ item, todos, setTodos }: noteProps) {
@@ -51,7 +51,6 @@ export default function Note({ item, todos, setTodos }: noteProps) {
 
   const handleOnClickTodo = () => {
     router.push('/todo/' + item.id)
-
   }
 
   const handleOnClickDelete = (e: MouseEvent<HTMLButtonElement>) => {
