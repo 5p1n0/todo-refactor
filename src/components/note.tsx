@@ -1,7 +1,8 @@
 import { css } from "@emotion/react"
 import { Todo } from "@/types"
 import { useRouter } from 'next/router'
-import { MouseEvent } from "react"
+import { MouseEvent, useContext } from "react"
+import { TodoContext } from "./todoContext"
 
 const noteCss = {
   note: css({
@@ -40,13 +41,8 @@ const noteCss = {
   }),
 } 
 
-type noteProps = {
-  item: Todo
-  todos: Todo[]
-  setTodos: (value: Todo[]) => void
-}
-
-export default function Note({ item, todos, setTodos }: noteProps) {
+export default function Note({ item }: { item: Todo }) {
+  const { todos, setTodos } = useContext(TodoContext)
   const router = useRouter()
 
   const handleOnClickTodo = () => {

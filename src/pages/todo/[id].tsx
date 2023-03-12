@@ -1,14 +1,12 @@
 import Header from "@/components/header";
 import Note from "@/components/note";
+import { TodoContext } from "@/components/todoContext";
 import { Todo } from "@/types"
 import { useRouter } from "next/router";
+import { useContext } from "react";
 
-type notePageProps = {
-  todos: Todo[]
-  setTodos: (value: Todo[]) => void
-}
-
-export default function NotePage({ todos, setTodos }: notePageProps) {
+export default function NotePage() {
+  const { todos } = useContext(TodoContext)
   const router = useRouter()
   const { id } = router.query
 
@@ -22,8 +20,6 @@ export default function NotePage({ todos, setTodos }: notePageProps) {
         <Note 
           key={todo.id} 
           item={todo} 
-          todos={todos} 
-          setTodos={setTodos} 
         />
       }
       {

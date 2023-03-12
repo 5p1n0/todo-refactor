@@ -1,20 +1,18 @@
 import Header from "@/components/header"
 import Note from "@/components/note"
 import SearchBar from "@/components/search-bar"
+import { TodoContext } from "@/components/todoContext"
 import { Todo } from "@/types"
-import { useState } from "react"
+import { useContext, useState } from "react"
 
-type homePageProps = {
-  todos: Todo[]
-  setTodos: (value: Todo[]) => void
-}
-
-export default function HomePage({ todos, setTodos }: homePageProps) {
-  const [results, setResults] = useState<Todo[]>(todos)
+export default function HomePage() {
+  const state = useContext(TodoContext)
+  const [results, setResults] = useState<Todo[]>(state.todos)
+  
   return (
     <>
       <Header />
-      <SearchBar todos={todos} setResults={setResults} />
+      <SearchBar setResults={setResults} />
       {
         results && 
         results.map((r: Todo) => {
@@ -22,8 +20,6 @@ export default function HomePage({ todos, setTodos }: homePageProps) {
             <Note 
               key={r.id} 
               item={r} 
-              todos={todos} 
-              setTodos={setTodos} 
             />
           )
         })

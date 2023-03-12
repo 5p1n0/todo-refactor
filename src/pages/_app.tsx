@@ -3,6 +3,7 @@ import { useState } from 'react'
 import Layout from '@/components/layout'
 import useFetchNotes from '@/hooks/useFetchNotes'
 import { Todo } from '@/types'
+import { TodoContext } from '@/components/todoContext'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const [todos, setTodos] = useState<Todo[]>([])
@@ -10,12 +11,12 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   useFetchNotes(setTodos)
 
   return (
-    <Layout>
-      <Component 
-        {...pageProps} 
-        todos={todos}
-        setTodos={setTodos}
-      />
-    </Layout>
+    <TodoContext.Provider value={{todos, setTodos}}>
+      <Layout>
+        <Component 
+          {...pageProps} 
+        />
+      </Layout>
+    </TodoContext.Provider>
   )
 }
